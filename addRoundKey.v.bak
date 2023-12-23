@@ -1,0 +1,10 @@
+
+module addRoundKey(data, key, out);
+input [31:0] data;
+input [31:0] key;
+output [127:0] out;
+
+assign out = data ^ key;
+
+
+endmodule 
