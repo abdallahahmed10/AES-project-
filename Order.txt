@@ -1,0 +1,20 @@
+// Done
+1) add round key
+2) Inv Mix Columns
+3) Inv Sub Bytes
+4) key expansion
+5) Shift Rows
+6) shift rows dec (inv)
+7) Sub Bytes
+8) Mix COlumns
+
+// order
+1) sub Bytes
+2) shift rows
+3) mix columns
+4) add round key
+5) key expansion
+6) InvSHiftRows
+7) InvSubBytes
+8) InvMixColumns
+9) inv add round key = add round key

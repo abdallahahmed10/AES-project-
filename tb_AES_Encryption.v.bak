@@ -1,0 +1,52 @@
+module AES_Encryption (
+    input [127:0] plain_text,
+    input [0:127] key,
+    output [127:0] cipher
+);
+
+
+    wire [127:0] round_0;
+    wire [0:127] key0,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10;
+    wire [127:0] round_out1,round_out2,round_out3,round_out4,round_out5,round_out6,round_out7,round_out8,round_out9,round_out10;
+    wire [127:0] sub10,shift10;
+
+    reg [0:1407] expanded_key;  // Expanded key is now 1408 bits
+
+    // Instantiate key expansion module
+    keyExpansion key_expansion_inst (
+        .key(key),
+        .w(expanded_key)  // Connect to expanded_key
+    );
+
+    // Add your round modules
+    // Instantiate round 0
+    addRoundKey round0 (
+        .state(plain_text),
+        .key(key0),
+        .cipher(round_0)
+    );
+    
+    // Instantiate round 1
+    round round1 (
+        .state(round_0),
+        .key(key1),
+        .cipher(round_out1)
+    );
+
+    // Instantiate round 2
+    round round2 (
+        .state(round_out1),
+        .key(key2),
+        .cipher(round_out2)
+    );
+
+    // Display the output after each round
+    initial begin
+        #1;  // Wait for 1 time unit to let the simulation stabilize
+        $display("Output after round 1: %h", round_out1);
+        $display("Output after round 2: %h", round_out2);
+        // Continue for all rounds...
+        $display("Final output: %h", cipher);
+    end
+
+endmodule
