@@ -17,7 +17,13 @@ module tb_AES_Encryption;
         #10;        
         $display("Input plain text: %h", plain_text);
         $display("Input key: %h", key);
-        // You can't display round_out1 and round_out2 here because they are not visible in this scope
+        // check if the output is 3925841d02dc09fbdc118597196a0b32
+        // if correct then display test passed
+        if (cipher == 128'h3925841d02dc09fbdc118597196a0b32)
+            $display("Test passed");
+        else
+            $display("Test failed");
+
         $display("Final output: %h", cipher);
     end
 
