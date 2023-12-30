@@ -4,10 +4,6 @@ input [0:127] key,
 output[127:0] cipher
 );
 
-// // Declare plain_text, key and cipher
-// reg [127:0] plain_text;
-// reg [0:127] key;
-// wire [127:0] cipher;
 
 wire [127:0] round_0;
 wire [0:127] key0,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10;
