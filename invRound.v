@@ -33,5 +33,13 @@ module invRound (
         .in(addRoundKey_reg),
         .out(plain_text)
     );
+
+    // Always block for sequential execution
+    always @(*) begin
+        invShiftRows_inst.encrypted = state;
+        invSubBytes_inst.en_reg = invShiftRow;
+        addRoundKey_inst.data = invSubByte_reg;
+        invMixColumns_inst.in = addRoundKey_reg;
+    end
     
 endmodule
