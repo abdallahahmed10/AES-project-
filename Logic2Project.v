@@ -4,17 +4,19 @@ module Logic2Project(flag,plainRegister,keyRegister,resultRegister),;
 	//input [127:0] plain;
 	//input [127:0] key;
 	//output [127:0] result;
-	output flag;
+	input [127:0] plainWire;
+    input [127:0] keyWire;
+    output [127:0] resultRegister;
+    output flag;
 	wire [127:0] keys [9:0];
 	wire [127:0] encrypted;
 	wire [127:0] decrypted;
-	input [127:0] plainRegister;
-	//input [127:0] keyRegister;
-	output [127:0] resultRegister;
+    reg [127:0] plainRegister;
+    reg [127:0] keyRegister;
 	reg flagRegister;
 	
 	
-	KeyExpansion module1 (.key(key),.keys(keys))
+	KeyExpansion module1 (.key(keyRegister),.keys(keys))
 	
 	encryption module2 (.plain(plainRegister),.keys(keys),.encrypted(encrypted));
 	
@@ -22,15 +24,16 @@ module Logic2Project(flag,plainRegister,keyRegister,resultRegister),;
 	
 	
 	always @(*) begin 
-		plainRegister <= //TODO: add test case from documentation, Note: Use _ for readability
-		keyRegister <= //TODO: add test case from documentation, Note: Use _ for readability
+		plainRegister <= plainWire //TODO: add test case from documentation, Note: Use _ for readability
+        keyRegister <= keyWire
+		//keyRegister <= //TODO: add test case from documentation, Note: Use _ for readability
 		resultRegister <= decrypted
 		
 		//TODO: add some signals that turn on encryption and decryption
-		
-		if (plainRegister [0] == resultRegister[0]) begin
-		flagRegister <= 1'b1;
-		end
+        flagRegister = (plainRegister == resultRegister) ? 1'b1 : 1'b0;
+		// if (plainRegister [0] == resultRegister[0]) begin
+		// flagRegister <= 1'b1;
+		// end
 	end
 	
 	assign flag = flagRegister;
