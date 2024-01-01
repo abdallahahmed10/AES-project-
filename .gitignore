@@ -28,4 +28,15 @@
 *.sci
 *.ddb
 *.dpi
+*.pin
+*.sof
+*.sld
+*.jdi
+*.cdf
+*.idb
+*.hsd
+*.tdb
+*.dfp
+*.rcfdb
+*.qws
 README
