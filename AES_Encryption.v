@@ -1,6 +1,6 @@
 module AES_Encryption (
 input [127:0] plain_text,
-input [0:127] key,
+input [0:1407] expanded_key,
 output[127:0] cipher
 );
 
@@ -11,14 +11,14 @@ wire [127:0] round_out1,round_out2,round_out3,round_out4,round_out5,round_out6,r
 wire [127:0] sub10,shift10;
 
 // might need reg
-wire [0:1407] expanded_key;  // Expanded key is now 1408 bits
+// wire [0:1407] expanded_key;  // Expanded key is now 1408 bits
 
 
 // Instantiate key expansion module
-keyExpansion key_expansion_inst (
-    .key(key),
-    .w(expanded_key)  // Connect to expanded_key
-);
+// keyExpansion key_expansion_inst (
+//     .key(key),
+//     .w(expanded_key)  // Connect to expanded_key
+// );
 
 // now we have the keys for 11 rounds
 // the keys should be partitioned to 11 partitions of 128 bits for each round

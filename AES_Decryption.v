@@ -1,6 +1,6 @@
 module AES_Decryption (
     input [127:0] cipher_text,
-    input [0:127] key,
+    input [0:1407] expanded_key,
     output [127:0] plain_text
 );
 
@@ -9,12 +9,12 @@ module AES_Decryption (
     wire [127:0] round_out1,round_out2,round_out3,round_out4,round_out5,round_out6,round_out7,round_out8,round_out9,round_out10;
     wire [127:0] sub10,shift10;
     
-    wire [0:1407] expanded_key;
+    // wire [0:1407] expanded_key;
 
-    keyExpansion key_expansion_inst (
-        .key(key),
-        .w(expanded_key)
-    );
+    // keyExpansion key_expansion_inst (
+    //     .key(key),
+    //     .w(expanded_key)
+    // );
 
     assign key0 = expanded_key[0:127];
     assign key1 = expanded_key[128:255];
